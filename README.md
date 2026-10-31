@@ -1,91 +1,52 @@
-# Sumit Bijarnia Foundation - Website
+# Sumit Bijarnia Foundation — Final Website V2
 
-Premium React + Vite website for the Sumit Bijarnia Foundation.
+React + Vite website for the Sumit Bijarnia Foundation.
 
-## 1) Install
+## Final content updates included
 
-Open the project folder in VS Code, then open the integrated terminal and run:
+- Home content and sequence refreshed
+- Five standard focus areas used site-wide: Skin Health, Healthcare, Education, Rural Development, Community Well-being
+- New client-approved focus-area images included locally
+- About Sumit story expanded, including the original 1% idea and current 5% commitment
+- Our Initiatives restructured and standardised
+- Our Commitment fully refreshed with Bare Chemistry story, founding team and the 5% of every sale commitment
+- New Our Promise page
+- Support Us refreshed with live Razorpay donation link
+- Contact page updated with .org email, WhatsApp, address and revised form
+- Footer includes Section 8 / CIN / 12AB / 80G / NPO DARPAN trust information
+- Privacy Policy and Terms of Use included
+- Foundation and Bare Chemistry logo treatments cleaned for seamless backgrounds
+- Responsive V2 styling and a softer animated hero background
+
+## Donation link
+
+The central donation URL is set in `src/config/site.js`:
+
+`https://razorpay.me/@sumitbijarniafoundation`
+
+All Donate buttons use the same setting.
+
+## Local setup
 
 ```bash
 npm install
-```
-
-## 2) Run locally
-
-```bash
 npm run dev
 ```
 
-Vite will show a local URL such as `http://localhost:5173`. Open it in your browser.
-
-## 3) Add the Razorpay / donation link
-
-Open:
-
-`src/config/site.js`
-
-Change:
-
-```js
-donationUrl: '',
-```
-
-to the official Foundation payment page URL, for example:
-
-```js
-donationUrl: 'https://your-official-payment-link.example',
-```
-
-Every Donate button reads the same value. Until a real link is added, the website intentionally shows "Donation gateway coming shortly" instead of using a fake payment link.
-
-## 4) Contact details, social links and 5% wording
-
-All of these are centralized in:
-
-`src/config/site.js`
-
-You can update:
-- phone
-- email
-- Instagram
-- Facebook
-- YouTube
-- LinkedIn
-- donation URL
-- Bare Chemistry 5% commitment wording
-
-## 5) Production build
+Build test:
 
 ```bash
 npm run build
 ```
 
-The production files will be created in the `dist` folder.
+## Deploy
 
-To preview the production build:
+The project is configured for Vercel. With the GitHub repository connected, future updates can be deployed with:
 
 ```bash
-npm run preview
+git add .
+git commit -m "Update website"
+git push
 ```
 
-## Main pages
-
-- `/` Home
-- `/about-sumit` About Sumit
-- `/initiatives` Our Initiatives
-- `/commitment` Bare Chemistry / Our Commitment
-- `/support` Support Us
-- `/contact` Contact
-- `/privacy` Privacy placeholder
-- `/terms` Terms placeholder
-
-## Typography note
-
-The project uses `Borscha` as the first display-font preference and `Inter` as the safe web fallback. A Borscha font file is not bundled in this project. If the Foundation has a licensed Borscha webfont, add it locally and declare it with `@font-face` in `src/styles/global.css`.
-
-## Important launch notes
-
-- The Privacy and Terms pages are starter placeholders and should be reviewed before a public launch.
-- The contact form currently opens the visitor's default email application with the enquiry pre-filled. A hosted form service can be connected later without adding a full backend.
-- No impact numbers, beneficiaries, testimonials or completed programme claims have been invented.
-- The Bare Chemistry logo used on the website was cropped directly from the supplied brand PDF so its original colours remain intact.
+Vercel will redeploy automatically.

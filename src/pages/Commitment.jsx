@@ -1,104 +1,48 @@
-import { useLayoutEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import PageShell from '../components/PageShell';
-import bareLogo from '../assets/images/bare-chemistry-logo.png';
-import sumit from '../assets/images/sumit-bijarnia.jpeg';
-import rahul from '../assets/images/rahul-bijarnia.jpeg';
-import dimple from '../assets/images/dimple-bijarnia.jpeg';
-import diksha from '../assets/images/diksha-bijarnia.jpeg';
-import { siteConfig } from '../config/site';
+import DonateButton from '../components/DonateButton';
 import PageMeta from '../components/PageMeta';
+import bareLogo from '../assets/images/bare-chemistry-logo-transparent.png';
+import foundationLogo from '../assets/images/foundation-logo-transparent.png';
+import sumit from '../assets/images/sumit-founder-updated.png';
+import rahul from '../assets/images/rahul-founder-updated.png';
+import dimple from '../assets/images/dimple-founder-updated.png';
+import diksha from '../assets/images/deeksha-founder-updated.png';
+import { siteConfig } from '../config/site';
 
-gsap.registerPlugin(ScrollTrigger);
-
-const people = [
-  { name: 'Sumit Bijarnia', image: sumit },
-  { name: 'Rahul Bijarnia', image: rahul },
-  { name: 'Dimple Bijarnia', image: dimple },
-  { name: 'Diksha Bijarnia', image: diksha }
+const founders = [
+  { name: 'Sumit Bijarnia', role: 'Founding Member', image: sumit },
+  { name: 'Rahul Bijarnia', role: 'Founding Member', image: rahul },
+  { name: 'Dimple Bijarnia', role: 'Co-Founder', image: dimple },
+  { name: 'Deeksha Bijarnia', role: 'Co-Founder', image: diksha }
 ];
 
 export default function Commitment() {
-  const five = useRef(null);
-  useLayoutEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const ctx = gsap.context(() => {
-      gsap.fromTo(five.current, { scale: .62, opacity: 0, filter: 'blur(12px)' }, {
-        scale: 1, opacity: 1, filter: 'blur(0px)', duration: 1.1, ease: 'power3.out',
-        scrollTrigger: { trigger: five.current, start: 'top 82%', once: true }
-      });
-    });
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <PageShell className="commitment-page"><PageMeta title="Our Commitment" description="Learn about Bare Chemistry's 5% profit commitment to the work of the Sumit Bijarnia Foundation." />
-      <section className="bc-hero">
-        <div className="bc-green-orb orb-a"></div><div className="bc-green-orb orb-b"></div>
-        <div className="container bc-hero-grid">
-          <div data-stagger><span className="eyebrow bc-kicker">Our commitment</span><h1>Two journeys.<br/><span>One larger purpose.</span></h1><p>The relationship between Bare Chemistry and the Sumit Bijarnia Foundation is rooted in continuity - carrying a shared journey forward through social impact.</p></div>
-          <div className="bc-logo-stage" data-mask><img src={bareLogo} alt="Bare Chemistry" /><div className="bc-logo-glow"></div></div>
+    <PageShell className="v2-page commitment-v2">
+      <PageMeta title="Our Commitment" description="Care that goes beyond skin: 5% of every Bare Chemistry sale supports the Sumit Bijarnia Foundation." />
+
+      <section className="v2-commitment-hero">
+        <div className="v2-bc-glow" />
+        <div className="container v2-commitment-hero-grid">
+          <div data-stagger><span className="eyebrow bc-kicker">Our commitment</span><h1>Care that goes<br/><em>beyond skin.</em></h1><p>Bare Chemistry was built around a simple belief: care should be purposeful, considered and honest. Today, that belief extends beyond the product through the work of the Sumit Bijarnia Foundation.</p></div>
+          <div className="v2-bc-logo-stage" data-mask><img src={bareLogo} alt="Bare Chemistry" /></div>
         </div>
       </section>
 
-      <section className="founders-section section-pad">
-        <div className="container">
-          <div className="founders-head" data-reveal>
+      <section className="v2-section v2-bare-belief"><div className="container v2-bare-belief-grid"><div data-reveal><span className="eyebrow">The Bare belief</span><h2>Skincare should work with your skin, not against it.</h2><p>Bare Chemistry believes in keeping skincare purposeful—understanding what skin needs, choosing ingredients with intention and avoiding unnecessary complexity.</p></div><div className="v2-belief-words" data-stagger><article><strong>Barrier First.</strong><p>Long-term skin health and barrier protection before unnecessary complexity.</p></article><article><strong>Simple Always.</strong><p>Every ingredient has a purpose. So every formulation does too.</p></article></div></div></section>
 
-  <div className="founders-intro-visual">
-    <div className="founders-logo-box">
-      <img src={bareLogo} alt="Bare Chemistry" />
-    </div>
+      <section className="v2-section v2-founder-section"><div className="container"><div className="v2-section-head" data-reveal><span className="eyebrow">The people behind the journey</span><h2>A shared beginning. A purpose that continues.</h2><p>Sumit Bijarnia was a founding member of Bare Chemistry and an important part of its early journey. The Foundation carries forward his connection to the brand and the values that shaped those formative years.</p><p>Bare Chemistry continues its work in skincare. The Sumit Bijarnia Foundation carries that spirit of care further into social impact.</p></div><div className="v2-founder-grid" data-stagger>{founders.map((person, index) => <figure key={person.name}><div className="v2-founder-photo"><img src={person.image} alt={person.name} /></div><figcaption><span>0{index + 1}</span><strong>{person.name}</strong><p>{person.role}</p></figcaption></figure>)}</div></div></section>
 
-    <span>Bare Chemistry</span>
-  </div>
+      <section className="v2-section v2-care-beyond"><div className="container v2-care-card" data-reveal><p>CARE SHOULD GO BEYOND SKIN.</p><h2>Every ingredient has a purpose.<br/>So does every purchase.</h2><span>Because caring for skin should also mean caring beyond ourselves.</span></div></section>
 
-  <div className="founders-intro-copy">
-    <span className="eyebrow">
-      The people behind the journey
-    </span>
+      <section className="v2-section v2-measurable"><div className="container v2-measurable-grid"><div className="v2-big-five" data-reveal>5<span>%</span></div><div data-reveal><span className="eyebrow light">A measurable commitment</span><h2>{siteConfig.bareChemistryCommitment}</h2><p>Your purchase helps support the Foundation as it develops initiatives across skin health, healthcare, education, rural development and community well-being.</p></div></div></section>
 
-    <h2>
-      A shared beginning.<br />
-      A commitment that continues.
-    </h2>
+      <section className="v2-section v2-purchase-purpose"><div className="container v2-split-heading"><div data-reveal><span className="eyebrow">From purchase to purpose</span><h2>A little care can go beyond the product.</h2></div><div data-reveal><p>The same thinking that guides what goes into a Bare Chemistry product guides what we hope every purchase can make possible beyond it.</p><p>Through this commitment, Bare Chemistry helps support the Foundation as it develops thoughtful programmes, partnerships and on-ground initiatives.</p><Link className="text-link" to="/initiatives">Explore Our Initiatives <span>↗</span></Link></div></div></section>
 
-    <p>
-      Sumit Bijarnia was a beloved founding member of Bare Chemistry.
-      The Foundation’s connection to the brand is carried forward
-      alongside Rahul Bijarnia, Dimple Bijarnia and Diksha Bijarnia.
-    </p>
-  </div>
+      <section className="v2-section v2-approach-card-section"><div className="container v2-approach-card" data-reveal><span className="eyebrow">Our approach</span><h2>Purposeful. Responsible. Transparent.</h2><p>The Foundation is at the beginning of its journey. Support from Bare Chemistry will help create the foundation for programmes and partnerships as they are responsibly developed.</p><p>We aim to use resources thoughtfully, respond to genuine needs and communicate clearly about the work we undertake.</p></div></section>
 
-</div>
-          <div className="editorial-people" data-stagger>
-            {people.map((person, index) => (
-              <figure className={`person-tile person-${index+1}`} key={person.name}>
-                <div className="person-image"><img src={person.image} alt={person.name} /></div>
-                <figcaption><span>0{index+1}</span><strong>{person.name}</strong></figcaption>
-              </figure>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="five-section section-pad">
-        <div className="container five-grid">
-          <div className="five-sticky"><div className="five-number" ref={five}>5<span>%</span></div><div className="five-glow"></div></div>
-          <div className="five-story">
-            <div className="five-chapter" data-reveal><span className="eyebrow light">A measurable commitment</span><h2>Part of every profit story can become part of a social-impact story.</h2><p>{siteConfig.bareChemistryCommitment}</p></div>
-            <div className="five-chapter" data-reveal><span className="chapter-no">01</span><h3>Skin health & wellbeing</h3><p>Supporting awareness, preventive care and access-focused programmes as the Foundation develops its work.</p></div>
-            <div className="five-chapter" data-reveal><span className="chapter-no">02</span><h3>Healthcare</h3><p>Helping create space for community health awareness and responsible need-based support.</p></div>
-            <div className="five-chapter" data-reveal><span className="chapter-no">03</span><h3>Education & community</h3><p>Enabling future initiatives that improve access to learning, opportunity and everyday wellbeing.</p></div>
-          </div>
-        </div>
-      </section>
-
-      <section className="bridge-section section-pad-sm"><div className="container bridge-grid"><div className="bridge-word">BUSINESS</div><div className="bridge-line"><span></span><strong>TO</strong><span></span></div><div className="bridge-word">PURPOSE</div></div></section>
-
-      <section className="closing-cta section-pad"><div className="container closing-card" data-reveal><span className="eyebrow">See where the commitment can go</span><h2>Purpose becomes real through the work it enables.</h2><p>Explore the Foundation’s evolving areas of action and the communities they aim to serve.</p><div className="closing-actions"><Link to="/initiatives" className="btn btn-primary">Explore Initiatives</Link><Link to="/support" className="btn btn-outline">Support Us</Link></div></div></section>
+      <section className="v3-relationship-section"><div className="container"><div className="v2-relationship-card v3-relationship-card" data-reveal><div className="v2-brand-lockup large"><img src={bareLogo} alt="Bare Chemistry" className="v2-bare-logo"/><span className="v2-lockup-divider v3-logo-line"/><img src={foundationLogo} alt="Sumit Bijarnia Foundation" className="v2-foundation-lockup"/></div><div><h2>Care doesn’t stop at the product.</h2><h3>It can become part of something bigger.</h3><p>Every purchase creates an opportunity to extend care a little further—supporting the work of the Sumit Bijarnia Foundation as it turns thoughtful ideas into practical action.</p><div className="v2-actions"><Link to="/initiatives" className="btn btn-light">Explore Our Initiatives</Link><DonateButton className="btn btn-ghost-light">Support the Foundation</DonateButton></div></div></div></div></section>
     </PageShell>
   );
 }

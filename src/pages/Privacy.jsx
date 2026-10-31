@@ -1,4 +1,30 @@
 import PageShell from '../components/PageShell';
-import { siteConfig } from '../config/site';
 import PageMeta from '../components/PageMeta';
-export default function Privacy(){return <PageShell><PageMeta title="Privacy Policy" description="Privacy information for the Sumit Bijarnia Foundation website." /><section className="legal-page section-pad"><div className="legal-wrap"><span className="eyebrow">Privacy Policy</span><h1>Privacy at the Foundation</h1><p>This is a basic website privacy placeholder for the initial launch. It should be reviewed against the Foundation’s final legal, donation and data-handling processes before public launch.</p><h2>Information you share</h2><p>When you contact the Foundation, you may provide information such as your name, email address, phone number and message. This information should be used only to respond to your enquiry and for legitimate Foundation communication.</p><h2>Third-party services</h2><p>Future donation processing may use a third-party payment provider. Its own privacy and security terms will apply to payment data.</p><h2>Contact</h2><p>Questions about privacy can be sent to <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>.</p></div></section></PageShell>}
+import privacyPolicy from '../content/privacy-policy.md?raw';
+
+function clean(text) {
+  return text
+    .replace(/\\&#xA;/g, ' ')
+    .replace(/&#x20;/g, ' ')
+    .replace(/\\@/g, '@')
+    .replace(/\\\./g, '.')
+    .replace(/\*\*/g, '')
+    .trim();
+}
+
+function PrivacyContent() {
+  const lines = privacyPolicy.split(/\r?\n/).map(clean).filter(Boolean);
+  return lines.map((rawLine, index) => {
+    const line = rawLine.replace(/^\\\*/, '*');
+    if (line === '⸻') return <hr key={index} />;
+    if (line === 'PRIVACY POLICY') return <span className="eyebrow" key={index}>Privacy Policy</span>;
+    if (/^\d+\.\s/.test(line)) return <h2 key={index}>{line}</h2>;
+    if (/^[A-Z][A-Z\s&/–—-]{3,}$/.test(line) && line.length < 90) return <h3 key={index}>{line}</h3>;
+    if (line.startsWith('* ')) return <p className="legal-bullet" key={index}>{line.slice(2).replace(/^\*|\*$/g, '')}</p>;
+    return <p key={index}>{line.replace(/^\*|\*$/g, '')}</p>;
+  });
+}
+
+export default function Privacy() {
+  return <PageShell className="v2-page"><PageMeta title="Privacy Policy" description="Privacy Policy for the Sumit Bijarnia Foundation website." /><section className="v2-section v2-legal-page"><article className="v2-legal-wrap"><PrivacyContent /></article></section></PageShell>;
+}

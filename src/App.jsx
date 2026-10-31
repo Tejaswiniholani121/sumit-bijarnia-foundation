@@ -8,10 +8,13 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Initiatives from './pages/Initiatives';
 import Commitment from './pages/Commitment';
+import PromisePage from './pages/Promise';
 import Support from './pages/Support';
+import Donate from './pages/Donate';
 import Contact from './pages/Contact';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
+import RegistrationTax from './pages/RegistrationTax';
 import NotFound from './pages/NotFound';
 
 function ScrollManager() {
@@ -43,10 +46,13 @@ export default function App() {
         <Route path="/about-sumit" element={<About />} />
         <Route path="/initiatives" element={<Initiatives />} />
         <Route path="/commitment" element={<Commitment />} />
+        <Route path="/promise" element={<PromisePage />} />
         <Route path="/support" element={<Support />} />
+        <Route path="/donate" element={<Donate />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/terms" element={<Terms />} />
+        <Route path="/registration-tax" element={<RegistrationTax />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
